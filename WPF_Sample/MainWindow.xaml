@@ -1,0 +1,539 @@
+﻿<Window x:Class="WPF_Sample.MainWindow"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Sample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="auto" Width="auto" MinHeight="600"
+        
+     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        >
+
+   
+
+        <xctk:BusyIndicator x:Name="ProgressIndicator" IsBusy="False">
+        <Grid>
+            
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="20" />
+
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card Padding="32" Grid.Column="1" Grid.Row="1" Margin="0" Grid.ColumnSpan="1">
+                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" TextAlignment="Center">Europaturnering 2018-2019</TextBlock>
+            </materialDesign:Card>
+
+
+
+
+            <dragablz:TabablzControl FixedHeaderCount="3" Grid.Column="1"  Grid.Row="2" TabStripPlacement="Left">
+                <TabItem Header="Stilling">
+                    <DataGrid Name="Standing" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"  />
+                            <DataGridTextColumn Header="Kampe" Binding="{Binding TotalMatches}" />
+                            <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                            <DataGridTextColumn Header="Pointsnit" Binding="{Binding AvgPoints}" />
+                            <DataGridTextColumn Header="Total mål" Binding="{Binding TotalGoals}" />
+                            <DataGridTextColumn Header="Kampe tilbage" Binding="{Binding RemainingMatches}" />
+                            <DataGridTextColumn Header="Total mulig point" Binding="{Binding MaxPointsPossible}" />
+
+
+
+                        </DataGrid.Columns>
+
+                   
+
+
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Deltagere">
+
+                    <!-- Deltagere-->
+                    <dragablz:TabablzControl FixedHeaderCount="3" TabStripPlacement="Left">
+                        <TabItem Header="Anders">
+                            <DataGrid Name="Player1Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+                                <!---->
+
+                            </DataGrid>
+                        </TabItem>  
+                        
+                        <TabItem Header="Fælles 1">
+                            <DataGrid Name="Player2Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Fælles 2">
+                            <DataGrid Name="Player3Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Trix">
+                            <DataGrid Name="Player4Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Sølvkær">
+                            <DataGrid Name="Player5Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                         <TabItem Header="CC">
+                            <DataGrid Name="Player6Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Kirke">
+                            <DataGrid Name="Player7Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Jakes">
+                            <DataGrid Name="Player8Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                         <TabItem Header="Heine">
+                            <DataGrid Name="Player9Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Ulrik">
+                            <DataGrid Name="Player10Grid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                    <DataGridTextColumn Header="K" Binding="{Binding MatchCount}" />
+                                    <DataGridTextColumn Header="V" Binding="{Binding Won}" />
+                                    <DataGridTextColumn Header="U" Binding="{Binding Tie}" />
+                                    <DataGridTextColumn Header="T" Binding="{Binding Lost}" />
+                                    <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+                                    <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>                                                                                      
+                    </dragablz:TabablzControl>
+                </TabItem>
+
+
+                <TabItem Header="Mesterhold">
+                    <!-- Mesterhold-->
+
+                                <dragablz:TabablzControl FixedHeaderCount="3" TabStripPlacement="Left">
+                                    <TabItem Header="Anders">
+                                        <DataGrid Name="Player1ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+
+
+                                        </DataGrid>
+                        </TabItem>  
+                        
+                        <TabItem Header="Fælles 1">
+                            <DataGrid Name="Player2ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                           <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Fælles 2">
+                            <DataGrid Name="Player3ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                           <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Trix">
+                            <DataGrid Name="Player4ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                        
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Sølvkær">
+                            <DataGrid Name="Player5ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                        <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                         <TabItem Header="CC">
+                            <DataGrid Name="Player6ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                        <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Kirke">
+                            <DataGrid Name="Player7ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                       <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Jakes">
+                            <DataGrid Name="Player8ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                        <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        
+                         <TabItem Header="Heine">
+                            <DataGrid Name="Player9ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                        <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Ulrik">
+                            <DataGrid Name="Player10ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+
+                                       <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
+                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
+                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding LogoLink}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+            
+                            </DataGrid>
+                        </TabItem>
+                        
+                        
+                        
+
+                        
+                    </dragablz:TabablzControl>
+                </TabItem>
+
+                        <TabItem Header="Info">
+                            <TextBlock Padding="20">Stillingen medregner ikke bonuspoint fra mesterhold <LineBreak></LineBreak><LineBreak></LineBreak>Løsningen håndterer ikke udgåede hold</TextBlock>
+
+
+
+
+                        </TabItem>
+                    </dragablz:TabablzControl>
+
+
+            <Button Name="Update" Grid.Column="1" Grid.Row="3" MaxWidth="200"  Margin="0"  HorizontalAlignment="Right" Click="Update_Click">Opdater Stilling</Button>
+
+                    <materialDesign:Snackbar x:Name="MySnackbar" Grid.Column="1" HorizontalAlignment="Center" MaxWidth="200" Grid.Row="3" />
+
+        </Grid>
+
+    </xctk:BusyIndicator>
+
+ 
+
+</Window>
