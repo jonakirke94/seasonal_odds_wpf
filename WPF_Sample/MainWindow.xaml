@@ -58,9 +58,6 @@
                             <DataGridTextColumn Header="Total mål" Binding="{Binding TotalGoals}" />
                             <DataGridTextColumn Header="Kampe tilbage" Binding="{Binding RemainingMatches}" />
                             <DataGridTextColumn Header="Total mulig point" Binding="{Binding MaxPointsPossible}" />
-
-
-
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
