@@ -44,9 +44,6 @@
                 <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" TextAlignment="Center">Europaturnering 2018-2019</TextBlock>
             </materialDesign:Card>
 
-
-
-
             <dragablz:TabablzControl FixedHeaderCount="3" Grid.Column="1"  Grid.Row="2" TabStripPlacement="Left">
                 <TabItem Header="Stilling">
                     <DataGrid Name="Standing" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
@@ -63,6 +60,8 @@
                 </TabItem>
                 <TabItem Header="Deltagere">
 
+                    
+                    
                     <!-- Deltagere-->
                     <dragablz:TabablzControl FixedHeaderCount="3" TabStripPlacement="Left">
                         <TabItem Header="Anders">
