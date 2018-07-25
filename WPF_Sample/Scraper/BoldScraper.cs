@@ -20,15 +20,13 @@ namespace WPF_Sample.Scraper
         private const string Bundesliga = "https://www.bold.dk/fodbold/tyskland/bundesliga/";
         private const string Championship = "https://www.bold.dk/fodbold/england/championship/";
         private const string SuperLig = "https://www.bold.dk/fodbold/tyrkiet/super-lig/";
-        private const string LaLiga = "https://www.bold.dk/fodbold/tyrkiet/super-lig/";
+        private const string LaLiga = "https://www.bold.dk/fodbold/spanien/la-liga//";
         private const string Æresdivisionen = "https://www.bold.dk/fodbold/holland/aeresdivisionen/";
         private const string SerieA = "https://www.bold.dk/fodbold/italien/serie-a/";
         private const string NordicBetLiga = "https://www.bold.dk/fodbold/danmark/nordicbet-liga/";
         private const string PremierLeague = "https://www.bold.dk/fodbold/england/premier-league/";
         private const string SuperLigaen = "https://www.bold.dk/fodbold/danmark/superligaen/";
         private const string Ligue1 = "https://www.bold.dk/fodbold/frankrig/ligue-1/";
-
-
 
         private const string CurrentSeason = "18/19";
 
@@ -52,8 +50,6 @@ namespace WPF_Sample.Scraper
 
         }
 
-
-        //make private static later
         private static HtmlDocument LoadHtmlPage(string url, bool requireBrowser = false)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // For https calls
@@ -106,7 +102,6 @@ namespace WPF_Sample.Scraper
             }
         }
 
-
         //this method saves team statistics for a league or updates it if it already exists
         private void UpdateLeague(HtmlDocument doc, bool isActive)
         {
@@ -139,25 +134,25 @@ namespace WPF_Sample.Scraper
                             existingTeam.Lost = team.Lost;
                             existingTeam.Score = team.Score;
                             existingTeam.Points = team.Points;
-                        } else
+                    } else
                         {
-                            existingTeam.Position = 1;
-                            existingTeam.MatchCount = 0;
-                            existingTeam.Won = 0;
-                            existingTeam.Tie = 0;
-                            existingTeam.Lost = 0;
-                            existingTeam.Score = "0-0";
-                            existingTeam.Points = 0;
-                        }
+                        existingTeam.Position = team.Position;
+                        existingTeam.MatchCount = 0;
+                        existingTeam.Won = 0;
+                        existingTeam.Tie = 0;
+                        existingTeam.Lost = 0;
+                        existingTeam.Score = "0-0";
+                        existingTeam.Points = 0;
+                    }
 
-                        DbEntityEntry<Team> entry = context.Entry(existingTeam);
+                    DbEntityEntry<Team> entry = context.Entry(existingTeam);
                         entry.State = EntityState.Modified;
                     }
                 }
 
                 if(newTeams.Count > 0)
                 {
-                    context.Teams.AddRange(teams);
+                    context.Teams.AddRange(newTeams);
                 }
 
 
@@ -168,14 +163,14 @@ namespace WPF_Sample.Scraper
         //this method determines whether the league has started or shows results from the previous season
         private Boolean IsLeagueActive(HtmlDocument doc)
         {
-      
+
             bool isActive = false;
 
             var container = doc.GetElementbyId("tournament_structure_header");
             var title_box = container.SelectSingleNode("//*[contains(@class,'title_box_container')]");
             var title_text = title_box.Descendants("h1").First().InnerText;
-            
-            if(title_text.Contains(CurrentSeason))
+
+            if (title_text.Contains(CurrentSeason))
             {
                 isActive = true;
             }

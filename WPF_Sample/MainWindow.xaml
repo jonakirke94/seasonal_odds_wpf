@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Sample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="auto" Width="auto" MinHeight="600"
+        Title="MainWindow" Height="auto" Width="auto" MinHeight="800"
         
      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
@@ -17,11 +17,17 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
+         Icon="icon.png"
         >
 
    
 
         <xctk:BusyIndicator x:Name="ProgressIndicator" IsBusy="False">
+        <xctk:BusyIndicator.BusyContentTemplate>
+            <DataTemplate>
+                <TextBlock FontSize="15">Henter stillinger</TextBlock>
+            </DataTemplate>
+        </xctk:BusyIndicator.BusyContentTemplate>
         <Grid>
             
 
@@ -49,8 +55,8 @@
                     <DataGrid Name="Standing" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}"  />
-                            <DataGridTextColumn Header="Kampe" Binding="{Binding TotalMatches}" />
                             <DataGridTextColumn Header="Point" Binding="{Binding Points}" />
+                            <DataGridTextColumn Header="Kampe" Binding="{Binding TotalMatches}" />
                             <DataGridTextColumn Header="Pointsnit" Binding="{Binding AvgPoints}" />
                             <DataGridTextColumn Header="Total mål" Binding="{Binding TotalGoals}" />
                             <DataGridTextColumn Header="Kampe tilbage" Binding="{Binding RemainingMatches}" />
@@ -336,26 +342,24 @@
                                                 </DataGridTemplateColumn>
                                                 <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
                                             </DataGrid.Columns>
-
-
                                         </DataGrid>
                         </TabItem>  
                         
                         <TabItem Header="Fælles 1">
                             <DataGrid Name="Player2ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                           <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
             
                             </DataGrid>
                         </TabItem>
@@ -363,141 +367,150 @@
                         <TabItem Header="Fælles 2">
                             <DataGrid Name="Player3ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                           <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
                         </TabItem>
                         
                         <TabItem Header="Trix">
                             <DataGrid Name="Player4ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                        
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+
+
+                                        </DataGrid>
                         </TabItem>
                         
                         <TabItem Header="Sølvkær">
                             <DataGrid Name="Player5ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
-
-                                        <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                         </TabItem>
                         
                          <TabItem Header="CC">
                             <DataGrid Name="Player6ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                        <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
                         </TabItem>
                         
                         <TabItem Header="Kirke">
                             <DataGrid Name="Player7ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                       <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
                         </TabItem>
                         
                         <TabItem Header="Jakes">
                             <DataGrid Name="Player8ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                        <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                         </TabItem>
                         
                          <TabItem Header="Heine">
                             <DataGrid Name="Player9ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                        <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
                         </TabItem>
                         
                         <TabItem Header="Ulrik">
                             <DataGrid Name="Player10ChampGrid" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
 
-                                       <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Liga" Binding="{Binding LeagueName}" />
-                                    <DataGridTextColumn Header="#" Binding="{Binding Position}" />
-                                    <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding LogoLink}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name}" />
-                                </DataGrid.Columns>
-            
-                            </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Liga" Binding="{Binding WinningTeam.LeagueName}" />
+                                                <DataGridTextColumn Header="#" Binding="{Binding WinningTeam.Position}" />
+                                                <DataGridTemplateColumn Header="" MaxWidth="45"  IsReadOnly="True">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding WinningTeam.LogoLink}" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Header="Name"  Binding="{Binding WinningTeam.Name}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                         </TabItem>
                         
                         

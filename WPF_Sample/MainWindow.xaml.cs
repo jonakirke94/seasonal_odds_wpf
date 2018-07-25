@@ -38,18 +38,8 @@ namespace WPF_Sample
 
             RefreshTables();
 
-            LoadChampionGrids();
-
-                  
-               
-            
-
-    
-
-          
+            LoadChampionGrids();    
         }
-
-
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
@@ -87,10 +77,6 @@ namespace WPF_Sample
 
             ProgressIndicator.IsBusy = true;
             worker.RunWorkerAsync();
-
-
-
-
         }
 
         private void RefreshDataGrids(List<User> players)
@@ -193,14 +179,14 @@ namespace WPF_Sample
 
                     if(points > 0)
                     {
-                        avgPoints = (totalMatches/10m / points/10m) * 100m;
+                        avgPoints = (points / 10m / totalMatches/10m) * 100m;
                     }
                     var maxPointsPossible = points + (remainingMatches * 3);
 
                     player.TotalMatches = totalMatches;
                     player.Points = points;
                     player.AvgPoints = decimal.Round(avgPoints, 2, MidpointRounding.AwayFromZero);
-                    player.TotalGoals = totalMatches;
+                    player.TotalGoals = totalGoals;
                     player.MaxPointsPossible = maxPointsPossible;
                     player.RemainingMatches = remainingMatches;
 
@@ -224,16 +210,16 @@ namespace WPF_Sample
                 this.Standing.ItemsSource = players;
 
                 //players
-                this.Player1Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Anders").Teams;
-                this.Player2Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Fælles 1").Teams;
-                this.Player3Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Fælles 2").Teams;
-                this.Player4Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Trix").Teams;
-                this.Player5Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Sølvkær").Teams;
-                this.Player6Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "CC").Teams;
-                this.Player7Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Kirke").Teams;
-                this.Player8Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Jakes").Teams;
-                this.Player9Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Heine").Teams;
-                this.Player10Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Ulrik").Teams;
+                this.Player1Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Anders").Teams.OrderByDescending(p => p.Points);
+                this.Player2Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Fælles 1").Teams.OrderByDescending(p => p.Points);
+                this.Player3Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Fælles 2").Teams.OrderByDescending(p => p.Points);
+                this.Player4Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Trix").Teams.OrderByDescending(p => p.Points);
+                this.Player5Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Sølvkær").Teams.OrderByDescending(p => p.Points);
+                this.Player6Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "CC").Teams.OrderByDescending(p => p.Points);
+                this.Player7Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Kirke").Teams.OrderByDescending(p => p.Points);
+                this.Player8Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Jakes").Teams.OrderByDescending(p => p.Points);
+                this.Player9Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Heine").Teams.OrderByDescending(p => p.Points);
+                this.Player10Grid.ItemsSource = players.SingleOrDefault(x => x.Name == "Ulrik").Teams.OrderByDescending(p => p.Points);
             }
 
         }
