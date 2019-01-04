@@ -52,23 +52,21 @@ namespace WPF_Sample
                 UpdateTeamStats();
             };
 
-            //since you can't access UI elements on a seperate thread it needs to be done on the ui thread
-            //currently the loading box is delayed until the dispatcher's code is done - not sure if there is a workaround for this
-            Dispatcher.Invoke((Action)(() =>
-            {
-                using (var context = new Tournament())
-                {
-                    UpdateStanding();
-                    var players = context.Users.Include(x => x.Teams).OrderByDescending(x => x.Points).ToList();
-
-                    RefreshDataGrids(players);     
-                }
-            }));
-
             worker.RunWorkerCompleted += (o, ea) =>
             {
-                ProgressIndicator.IsBusy = false;
+                //since you can't access UI elements on a seperate thread it needs to be done on the ui thread
+                //currently the loading box is delayed until the dispatcher's code is done - not sure if there is a workaround for this
+                Dispatcher.Invoke(() =>
+                {
+                    using (var context = new Tournament())
+                    {
+                        UpdateStanding();
+                        var players = context.Users.Include(x => x.Teams).OrderByDescending(x => x.Points).ToList();
+                        RefreshDataGrids(players);
+                    }
+                });
 
+                ProgressIndicator.IsBusy = false;
                 //snackbar indicating the tournament was successfully updated
                 var myMessageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(3000));
                 MySnackbar.MessageQueue = myMessageQueue;
