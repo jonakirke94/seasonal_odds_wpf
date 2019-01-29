@@ -62,7 +62,7 @@ namespace WPF_Sample.Scraper
                 var web = new HtmlWeb
                 {
                     //this encoding allows the reader to read Æ/Ø/Å
-                    OverrideEncoding = Encoding.GetEncoding("ISO-8859-1")
+                    OverrideEncoding = Encoding.GetEncoding("UTF-8")
                 };
 
                 result = web.Load(url);
